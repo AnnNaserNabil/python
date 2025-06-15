@@ -1,0 +1,36 @@
+# Core
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+gunicorn==21.2.0
+python-multipart==0.0.6
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-dotenv==1.0.0
+email-validator==2.1.0.post1
+
+# Database
+sqlalchemy==2.0.25
+alembic==1.13.1
+psycopg2-binary==2.9.9
+asyncpg==0.29.0
+
+# Vector Stores
+pgvector==0.2.3
+pinecone-client==3.0.0
+weaviate-client==3.26.2
+
+# AI/ML
+openai==1.12.0
+langchain==0.1.0
+langchain-openai==0.0.2
+
+# Rate limiting
+slowapi==0.1.8
+
+# Monitoring
+sentry-sdk[fastapi]==1.39.1
+
+# Security
+python-jose[cryptography]==3.3.0
+python-multipart==0.0.6
+python-dotenv==1.0.0
