@@ -1,6 +1,46 @@
 version: '3.8'
 
 services:
+  # Backend service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: social_agent_backend
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/social_agent
+      - POSTGRES_VECTOR_DB_URL=postgresql://postgres:postgres@postgres:5432/social_agent
+      - SECRET_KEY=your-secret-key-change-this-in-production
+      - FIRST_SUPERUSER=admin@example.com
+      - FIRST_SUPERUSER_PASSWORD=changethis
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    volumes:
+      - ./backend/uploads:/app/uploads
+    restart: unless-stopped
+    networks:
+      - social_network
+
+  # Frontend service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: social_agent_frontend
+    ports:
+      - "3000:80"
+    environment:
+      - REACT_APP_API_URL=/api
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - social_network
+
+  # Database service
   postgres:
     image: ankane/pgvector:latest
     container_name: social_agent_db
@@ -19,7 +59,10 @@ services:
       timeout: 5s
       retries: 5
     restart: unless-stopped
+    networks:
+      - social_network
 
+  # Database management
   pgadmin:
     image: dpage/pgadmin4:latest
     container_name: pgadmin
@@ -31,6 +74,15 @@ services:
     depends_on:
       - postgres
     restart: unless-stopped
+    networks:
+      - social_network
 
+# Volumes
 volumes:
   postgres_data:
+
+
+# Networks
+networks:
+  social_network:
+    driver: bridge

@@ -10,6 +10,8 @@ A cloud-native, multi-tenant social media management platform powered by AI agen
 - [Getting Started](#getting-started)
 - [Security](#security)
 - [License](#license)
+- [Setup Instructions](#setup-instructions)
+- [Deployment Details](#deployment-details)
 
 ## System Overview
 
@@ -110,6 +112,39 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 # Install dependencies
 pip install -r requirements.txt
 ```
+
+## Setup Instructions
+
+### Environment Variables
+- `GOOGLE_CLOUD_PROJECT`: Google Cloud project ID
+- `GOOGLE_CLOUD_REGION`: Google Cloud region
+- `FIREBASE_AUTH_PROJECT_ID`: Firebase Auth project ID
+- `FIREBASE_AUTH_CLIENT_ID`: Firebase Auth client ID
+- `FIREBASE_AUTH_CLIENT_SECRET`: Firebase Auth client secret
+
+### Database Setup
+- Create a PostgreSQL database instance on Cloud SQL
+- Create a Firestore database instance
+- Create a Vector Database instance
+
+### API Gateway Setup
+- Create a Cloud Endpoints API gateway
+- Configure API gateway with Firebase Auth
+
+## Deployment Details
+
+### Cloud Run Deployment
+- Create a Cloud Run service
+- Configure Cloud Run service with API gateway
+- Deploy application to Cloud Run
+
+### Cloud SQL Deployment
+- Create a Cloud SQL instance
+- Configure Cloud SQL instance with PostgreSQL database
+
+### Firestore Deployment
+- Create a Firestore instance
+- Configure Firestore instance with database schema
 
 ## Security
 
