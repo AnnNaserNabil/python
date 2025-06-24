@@ -8,12 +8,15 @@ For the LockedIn influencer dashboard, we need to calculate the total reach of a
 Complete the sum function. It's a slightly modified version of the algorithm above. Instead of just two numbers, a and b, it accepts a list of numbers and returns the sum of all of them.
 💻 Your Code
 
+'''python
+
 def sum(nums):
     total = 0
     for num in nums:
         total += num
     return total
 Preferred Language
+
 
 Python
 Difficulty Level
